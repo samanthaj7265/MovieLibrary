@@ -45,7 +45,24 @@ internal class Program
         }
         else if (resp == "2")
         {
-
+            string? title;
+            string? genre;
+            string? movieID;
+            int number;
+            while (resp != "N")
+            {
+                string last = File.ReadLines(@"movies.csv").Last();
+                string[] lastLine = last.Split(',');
+                number = Convert.ToInt32(lastLine[0]) + 1;
+                movieID = number.ToString();
+                Console.Write("Title of Movie: ");
+                title = Console.ReadLine();
+                Console.Write("Genre(s) of Movie: ");
+                genre = Console.ReadLine();
+                File.AppendAllText(movieFile, $"\n{movieID},{title},{genre}");
+                Console.Write("Add another Movie? Y or N?: ");
+                resp = Console.ReadLine().ToUpper();       
+            }
         }       
     }
 }
