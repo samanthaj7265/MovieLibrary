@@ -21,5 +21,31 @@ internal class Program
         Console.WriteLine("Enter 2 to add movie to file.");
         Console.WriteLine("Enter anything else to quit.");
         
+                string? resp = Console.ReadLine();
+        string movieFile = "movies.csv";
+        if (resp == "1")
+        {
+            try
+            {
+                using (StreamReader sr = new StreamReader("movies.csv"))
+                {
+                    string? line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        string[] subs = line.Split(',');
+                        Console.WriteLine("{0,-8}{1,-75}{2,-50}", subs[0], subs[1], subs[2]);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("The file could not be read:");
+                Console.WriteLine(e.Message);
+            }
+        }
+        else if (resp == "2")
+        {
+
+        }       
     }
 }
